@@ -1,8 +1,3 @@
-/*
- * @Date: 2023-09-11 20:40:46
- * @LastEditors: Night-stars-1 nujj1042633805@gmail.com
- * @LastEditTime: 2023-11-23 00:26:27
- */
 export const data = {
   All: 'All',
   Overview: 'Overview',

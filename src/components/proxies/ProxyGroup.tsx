@@ -78,7 +78,6 @@ function ProxyGroupImpl({
     setIsTestingLatency(true);
     try {
       if (version.meta === true) {
-        console.log(timeoutTestUrl)
         await proxiesAPI.requestDelayForProxyGroup(apiConfig, name, latencyTestUrl, timeoutTestUrl);
         await dispatch(fetchProxies(apiConfig));
       } else {
@@ -87,7 +86,7 @@ function ProxyGroupImpl({
       }
     } catch (err) {}
     setIsTestingLatency(false);
-  }, [all, apiConfig, dispatch, name, version.meta]);
+  }, [all, apiConfig, dispatch, name, version.meta, latencyTestUrl, requestDelayForProxies, timeoutTestUrl]);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 

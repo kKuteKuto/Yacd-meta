@@ -86,7 +86,7 @@ function ProxySmallImpl({
   const latencyNumber = latency?.number ?? delay;
   const color = useMemo(
     () => getProxyDotBackgroundColor({ number: latencyNumber }, httpsLatencyTest),
-    [latencyNumber]
+    [latencyNumber, httpsLatencyTest]
   );
 
   const title = useMemo(() => {
@@ -166,7 +166,7 @@ function ProxyImpl({
   const latencyNumber = latency?.number ?? delay;
   const color = useMemo(
     () => getLabelColor({ number: latencyNumber }, httpsLatencyTest),
-    [latencyNumber]
+    [latencyNumber, httpsLatencyTest]
   );
 
   const doSelect = React.useCallback(() => {

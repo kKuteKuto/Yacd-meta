@@ -9,7 +9,7 @@ import Select from '~/components/shared/Select';
 import { ClashGeneralConfig, DispatchFn, State } from '~/store/types';
 import { ClashAPIConfig } from '~/types';
 
-import { getClashAPIConfig, getLatencyTestUrl, getTimeoutTestUrl, getCProcess, getSelectedChartStyleIndex } from '../store/app';
+import { getClashAPIConfig, getCProcess, getLatencyTestUrl, getSelectedChartStyleIndex,getTimeoutTestUrl } from '../store/app';
 import {
   fetchConfigs,
   flushFakeIPPool,
@@ -153,6 +153,8 @@ function ConfigImpl({
     [configState]
   );
 
+  const { selectChartStyleIndex, updateAppConfig } = useStoreActions();
+  
   const handleInputOnChange = useCallback(
     ({ name, value }) => {
       switch (name) {
@@ -177,10 +179,9 @@ function ConfigImpl({
           }
           setConfigState(name, value);
           break;
-        case 'cProcess': {
+        case 'cProcess':
           updateAppConfig(name, value);
           break;
-        }
         case 'enable':
         case 'stack':
           setTunConfigState(name, value);
@@ -190,10 +191,8 @@ function ConfigImpl({
           return;
       }
     },
-    [apiConfig, dispatch, setConfigState, setTunConfigState]
+    [apiConfig, dispatch, setConfigState, setTunConfigState, updateAppConfig]
   );
-
-  const { selectChartStyleIndex, updateAppConfig } = useStoreActions();
 
   const handleInputOnBlur = useCallback(
     (

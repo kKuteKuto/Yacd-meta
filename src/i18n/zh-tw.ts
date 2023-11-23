@@ -1,8 +1,3 @@
-/*
- * @Date: 2023-11-23 14:22:06
- * @LastEditors: Night-stars-1 nujj1042633805@gmail.com
- * @LastEditTime: 2023-11-23 14:27:52
- */
 export const data = {
   All: '全部',
   Overview: '概覽',

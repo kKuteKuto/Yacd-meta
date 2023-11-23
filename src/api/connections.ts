@@ -52,7 +52,7 @@ function appendData(s: string) {
   try {
     o = JSON.parse(s);
     o.connections.forEach(conn => {
-      let m = conn.metadata;
+      const m = conn.metadata;
       if (m.process == null) {
         if (m.processPath != null) {
           m.process = m.processPath.replace(/^.*[/\\](.*)$/, "$1");
