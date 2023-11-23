@@ -1,3 +1,8 @@
+/*
+ * @Date: 2023-11-23 14:22:06
+ * @LastEditors: Night-stars-1 nujj1042633805@gmail.com
+ * @LastEditTime: 2023-11-23 14:27:52
+ */
 export const data = {
   All: '全部',
   Overview: '概覽',
@@ -41,6 +46,8 @@ export const data = {
   no_logs: '暫時沒有紀錄…',
   chart_style: '流量圖樣式',
   latency_test_url: '延遲測速 URL',
+  timeout_test_url: '延遲測速 超時時間',
+  c_process_show: '是否顯示處理程序',
   lang: '語言',
   update_all_rule_provider: '更新所有規則提供者',
   update_all_proxy_provider: '更新所有代理伺服器提供者',

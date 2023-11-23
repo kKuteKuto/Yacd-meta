@@ -41,6 +41,8 @@ export const data = {
   no_logs: '暂无日志...',
   chart_style: '流量图样式',
   latency_test_url: '延迟测速 URL',
+  timeout_test_url: '延迟测速 超时时间',
+  c_process_show: '是否显示进程',
   lang: '语言',
   update_all_rule_provider: '更新所有 rule provider',
   update_all_proxy_provider: '更新所有 proxy provider',

@@ -62,9 +62,10 @@
 }
 
 :root {
-  --font-mono: "Roboto Mono", Menlo, monospace;
+  --font-mono: 'Roboto Mono', Menlo, monospace;
   // prettier-ignore
-  --font-normal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Source Han Sans", "PingFang SC", "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", Arial, "Twemoji Mozilla", "_Twemoji Mozilla", "Segoe UI Emoji", "Segoe UI Symbol"
+  --font-normal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Source Han Sans", "PingFang SC", "Microsoft YaHei" , "微软雅黑", Arial,"Twemoji Mozilla", Inter, "Segoe UI Emoji", "Segoe UI Symbol", "_Twemoji Mozilla";
+  
 }
 
 body {

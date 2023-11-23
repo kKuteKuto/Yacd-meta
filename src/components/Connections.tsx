@@ -11,7 +11,7 @@ import { State } from '~/store/types';
 
 import * as connAPI from '../api/connections';
 import useRemainingViewPortHeight from '../hooks/useRemainingViewPortHeight';
-import { getClashAPIConfig } from '../store/app';
+import { getClashAPIConfig, getCProcess } from '../store/app';
 import s from './Connections.module.scss';
 import ConnectionTable from './ConnectionTable';
 import ContentHeader from './ContentHeader';
@@ -202,7 +202,7 @@ function ConnQty({ qty }) {
 
 const sortDescFirst = true;
 const hiddenColumnsOrigin = ['id'];
-const columnsOrigin = [
+let columnsOrigin = [
   { accessor: 'id', show: false },
   { Header: 'c_type', accessor: 'type' },
   { Header: 'c_process', accessor: 'process' },
@@ -220,6 +220,7 @@ const columnsOrigin = [
   { Header: 'c_ctrl', accessor: 'ctrl' },
 ];
 
+
 const savedHiddenColumns = localStorage.getItem('hiddenColumns');
 const savedColumns = localStorage.getItem('columns');
 
@@ -228,7 +229,15 @@ const hiddenColumnsInit = savedHiddenColumns
   : [...hiddenColumnsOrigin];
 
 const columnOrder = savedColumns ? JSON.parse(savedColumns) : null;
-const columnsInit = columnOrder
+
+
+function Conn({ apiConfig, cprocess }) {
+  const { t } = useTranslation();
+  const [showModalColumn, setModalColumn] = useState(false);
+  const [hiddenColumns, setHiddenColumns] = useState(hiddenColumnsInit);
+  columnsOrigin = columnsOrigin.filter(column => (column.accessor !== 'process' || (column.accessor === 'process' && cprocess)));
+  console.log(columnsOrigin)
+  const columnsInit = columnOrder
   ? [...columnsOrigin].sort((pre, next) => {
       const preIdx = columnOrder.findIndex((column) => column.accessor === pre.accessor);
       const nextIdx = columnOrder.findIndex((column) => column.accessor === next.accessor);
@@ -243,11 +252,6 @@ const columnsInit = columnOrder
       return preIdx - nextIdx;
     })
   : [...columnsOrigin];
-
-function Conn({ apiConfig }) {
-  const { t } = useTranslation();
-  const [showModalColumn, setModalColumn] = useState(false);
-  const [hiddenColumns, setHiddenColumns] = useState(hiddenColumnsInit);
   const [columns, setColumns] = useState(columnsInit);
 
   const closeModalColumn = () => {
@@ -495,6 +499,7 @@ function Conn({ apiConfig }) {
 
 const mapState = (s: State) => ({
   apiConfig: getClashAPIConfig(s),
+  cprocess: getCProcess(s),
 });
 
 export default connect(mapState)(Conn);

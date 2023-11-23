@@ -9,7 +9,7 @@ import Select from '~/components/shared/Select';
 import { ClashGeneralConfig, DispatchFn, State } from '~/store/types';
 import { ClashAPIConfig } from '~/types';
 
-import { getClashAPIConfig, getLatencyTestUrl, getSelectedChartStyleIndex } from '../store/app';
+import { getClashAPIConfig, getLatencyTestUrl, getTimeoutTestUrl, getCProcess, getSelectedChartStyleIndex } from '../store/app';
 import {
   fetchConfigs,
   flushFakeIPPool,
@@ -78,6 +78,8 @@ const mapState = (s: State) => ({
 const mapState2 = (s: State) => ({
   selectedChartStyleIndex: getSelectedChartStyleIndex(s),
   latencyTestUrl: getLatencyTestUrl(s),
+  timeoutTestUrl: getTimeoutTestUrl(s),
+  cprocess: getCProcess(s),
   apiConfig: getClashAPIConfig(s),
 });
 
@@ -96,10 +98,13 @@ type ConfigImplProps = {
   configs: ClashGeneralConfig;
   selectedChartStyleIndex: number;
   latencyTestUrl: string;
+  timeoutTestUrl: string;
+  cprocess: boolean;
   apiConfig: ClashAPIConfig;
 };
 
 function getBackendContent(version: any): string {
+  console.log(version);
   if (version && version.meta && !version.premium) {
     return 'Clash.Meta ';
   } else if (version && version.meta && version.premium) {
@@ -114,6 +119,8 @@ function ConfigImpl({
   configs,
   selectedChartStyleIndex,
   latencyTestUrl,
+  timeoutTestUrl,
+  cprocess,
   apiConfig,
 }: ConfigImplProps) {
   const { t, i18n } = useTranslation();
@@ -170,6 +177,10 @@ function ConfigImpl({
           }
           setConfigState(name, value);
           break;
+        case 'cProcess': {
+          updateAppConfig(name, value);
+          break;
+        }
         case 'enable':
         case 'stack':
           setTunConfigState(name, value);
@@ -204,6 +215,10 @@ function ConfigImpl({
           break;
         }
         case 'latencyTestUrl': {
+          updateAppConfig(name, value);
+          break;
+        }
+        case 'timeoutTestUrl': {
           updateAppConfig(name, value);
           break;
         }
@@ -421,12 +436,33 @@ function ConfigImpl({
           />
         </div>
         <div>
+          <div className={s0.label}>{t('timeout_test_url')}</div>
+          <SelfControlledInput
+            name="timeoutTestUrl"
+            type="text"
+            value={timeoutTestUrl}
+            onBlur={handleInputOnBlur}
+          />
+        </div>
+        <div>
           <div className={s0.label}>{t('lang')}</div>
           <div>
             <Select
               options={langOptions}
               selected={i18n.language}
               onChange={(e) => i18n.changeLanguage(e.target.value)}
+            />
+          </div>
+        </div>
+        <div>
+          <div className={s0.label}>{t('c_process_show')}</div>
+          <div className={s0.wrapSwitch}>
+            <Switch
+              name="c-process"
+              checked={cprocess}
+              onChange={(value: boolean) =>
+                handleInputOnChange({ name: 'cProcess', value: value })
+              }
             />
           </div>
         </div>

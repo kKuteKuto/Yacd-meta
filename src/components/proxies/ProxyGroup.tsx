@@ -10,6 +10,7 @@ import {
   getHideUnavailableProxies,
   getLatencyTestUrl,
   getProxySortBy,
+  getTimeoutTestUrl,
 } from '~/store/app';
 import { fetchProxies, getProxies, switchProxy } from '~/store/proxies';
 
@@ -41,6 +42,7 @@ function ProxyGroupImpl({
   now,
   isOpen,
   latencyTestUrl,
+  timeoutTestUrl,
   apiConfig,
   dispatch,
 }) {
@@ -76,7 +78,8 @@ function ProxyGroupImpl({
     setIsTestingLatency(true);
     try {
       if (version.meta === true) {
-        await proxiesAPI.requestDelayForProxyGroup(apiConfig, name, latencyTestUrl);
+        console.log(timeoutTestUrl)
+        await proxiesAPI.requestDelayForProxyGroup(apiConfig, name, latencyTestUrl, timeoutTestUrl);
         await dispatch(fetchProxies(apiConfig));
       } else {
         await requestDelayForProxies(apiConfig, all);
@@ -169,6 +172,7 @@ export const ProxyGroup = connect((s, { name, delay }) => {
   const proxySortBy = getProxySortBy(s);
   const hideUnavailableProxies = getHideUnavailableProxies(s);
   const latencyTestUrl = getLatencyTestUrl(s);
+  const timeoutTestUrl = getTimeoutTestUrl(s);
 
   const group = proxies[name];
   const { all, type, now } = group;
@@ -182,5 +186,6 @@ export const ProxyGroup = connect((s, { name, delay }) => {
     now,
     isOpen: collapsibleIsOpen[`proxyGroup:${name}`],
     latencyTestUrl,
+    timeoutTestUrl,
   };
 })(ProxyGroupImpl);
