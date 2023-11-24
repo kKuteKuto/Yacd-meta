@@ -40,7 +40,7 @@ function AboutImpl(props: Props) {
       {version && version.version ? (
         <Version
           name={
-            version.meta && version.premium ? 'sing-box' : version.meta ? 'Clash.Meta' : 'Clash'
+            version.meta && version.premium ? 'sing-box' : version.meta && version.Rev ? 'Clash.Rev' : version.meta ? 'Clash.Meta' : 'Clash'
           }
           version={version.version}
           link={

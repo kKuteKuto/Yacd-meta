@@ -104,8 +104,9 @@ type ConfigImplProps = {
 };
 
 function getBackendContent(version: any): string {
-  console.log(version);
-  if (version && version.meta && !version.premium) {
+  if (version && version.meta && version.Rev) {
+    return 'Clash.Rev ';
+  } else if (version && version.meta && !version.premium) {
     return 'Clash.Meta ';
   } else if (version && version.meta && version.premium) {
     return 'sing-box ';

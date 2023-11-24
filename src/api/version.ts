@@ -5,6 +5,7 @@ type VersionData = {
   version?: string;
   premium?: boolean;
   meta?: boolean;
+  Rev?: string;
 };
 
 export async function fetchVersion(
