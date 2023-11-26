@@ -42,7 +42,6 @@ export const data = {
   chart_style: '流量圖樣式',
   latency_test_url: '延遲測速 URL',
   timeout_test_url: '延遲測速 超時時間',
-  c_process_show: '是否顯示處理程序',
   lang: '語言',
   update_all_rule_provider: '更新所有規則提供者',
   update_all_proxy_provider: '更新所有代理伺服器提供者',

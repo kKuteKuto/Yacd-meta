@@ -1,3 +1,8 @@
+/*
+ * @Date: 2023-11-23 14:22:06
+ * @LastEditors: Night-stars-1 nujj1042633805@gmail.com
+ * @LastEditTime: 2023-11-26 22:11:12
+ */
 export const data = {
   All: 'All',
   Overview: 'Overview',
@@ -41,7 +46,6 @@ export const data = {
   chart_style: 'Chart Style',
   latency_test_url: 'Latency Test URL',
   timeout_test_url: 'Latency Test Timeout',
-  c_process_show: 'Show Process',
   lang: 'Language',
   update_all_rule_provider: 'Update all rule providers',
   update_all_proxy_provider: 'Update all proxy providers',

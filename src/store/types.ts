@@ -7,7 +7,6 @@ export type StateApp = {
 
   latencyTestUrl: string;
   timeoutTestUrl: string;
-  cProcess: boolean
   selectedChartStyleIndex: number;
   theme: string;
 

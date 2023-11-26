@@ -15,7 +15,6 @@ export const getTheme = (s: State) => s.app.theme;
 export const getSelectedChartStyleIndex = (s: State) => s.app.selectedChartStyleIndex;
 export const getLatencyTestUrl = (s: State) => s.app.latencyTestUrl;
 export const getTimeoutTestUrl = (s: State) => s.app.timeoutTestUrl;
-export const getCProcess = (s: State) => s.app.cProcess;
 export const getCollapsibleIsOpen = (s: State) => s.app.collapsibleIsOpen;
 export const getProxySortBy = (s: State) => s.app.proxySortBy;
 export const getHideUnavailableProxies = (s: State) => s.app.hideUnavailableProxies;
@@ -163,7 +162,6 @@ const defaultState: StateApp = {
 
   latencyTestUrl: 'https://www.gstatic.com/generate_204',
   timeoutTestUrl: '2000',
-  cProcess: true,
   selectedChartStyleIndex: 0,
   theme: 'dark',
 

@@ -9,7 +9,7 @@ import Select from '~/components/shared/Select';
 import { ClashGeneralConfig, DispatchFn, State } from '~/store/types';
 import { ClashAPIConfig } from '~/types';
 
-import { getClashAPIConfig, getCProcess, getLatencyTestUrl, getSelectedChartStyleIndex,getTimeoutTestUrl } from '../store/app';
+import { getClashAPIConfig, getLatencyTestUrl, getSelectedChartStyleIndex,getTimeoutTestUrl } from '../store/app';
 import {
   fetchConfigs,
   flushFakeIPPool,
@@ -79,7 +79,6 @@ const mapState2 = (s: State) => ({
   selectedChartStyleIndex: getSelectedChartStyleIndex(s),
   latencyTestUrl: getLatencyTestUrl(s),
   timeoutTestUrl: getTimeoutTestUrl(s),
-  cprocess: getCProcess(s),
   apiConfig: getClashAPIConfig(s),
 });
 
@@ -99,7 +98,6 @@ type ConfigImplProps = {
   selectedChartStyleIndex: number;
   latencyTestUrl: string;
   timeoutTestUrl: string;
-  cprocess: boolean;
   apiConfig: ClashAPIConfig;
 };
 
@@ -121,7 +119,6 @@ function ConfigImpl({
   selectedChartStyleIndex,
   latencyTestUrl,
   timeoutTestUrl,
-  cprocess,
   apiConfig,
 }: ConfigImplProps) {
   const { t, i18n } = useTranslation();
@@ -179,9 +176,6 @@ function ConfigImpl({
             if (num < 0 || num > 65535) return;
           }
           setConfigState(name, value);
-          break;
-        case 'cProcess':
-          updateAppConfig(name, value);
           break;
         case 'enable':
         case 'stack':
@@ -451,18 +445,6 @@ function ConfigImpl({
               options={langOptions}
               selected={i18n.language}
               onChange={(e) => i18n.changeLanguage(e.target.value)}
-            />
-          </div>
-        </div>
-        <div>
-          <div className={s0.label}>{t('c_process_show')}</div>
-          <div className={s0.wrapSwitch}>
-            <Switch
-              name="c-process"
-              checked={cprocess}
-              onChange={(value: boolean) =>
-                handleInputOnChange({ name: 'cProcess', value: value })
-              }
             />
           </div>
         </div>
